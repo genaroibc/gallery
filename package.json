@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "map-images": "ts-node --esm ./src/scripts/map-images.ts",
+    "build": "pnpm map-images && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
