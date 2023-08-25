@@ -8,7 +8,8 @@
     "resize-images": "for file in public/img/original/*.png; do ffmpeg -i $file -vf scale=20:-1 public/img/small/$(basename $file); done",
     "map-images": "ts-node --esm ./src/scripts/map-images.ts",
     "generate-images": "pnpm resize-images && pnpm map-images",
-    "build": "pnpm generate-images && astro build",
+    "prebuild": "pnpm generate-images",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
