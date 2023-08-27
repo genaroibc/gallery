@@ -9,14 +9,14 @@ const { alt, fullImgSrc, placeholderImgSrc } = Astro.props
 ---
 
 <div
-  class="w-full h-full bg-no-repeat [background-size:100%]"
+  class="w-full h-full bg-no-repeat [background-size:100%] rounded-md"
   style={`background-image: url('${placeholderImgSrc}'); background-position: center;`}
 >
   <img
     loading="lazy"
     src={fullImgSrc}
     alt={alt}
-    class="enhanced-image w-full h-full object-contain opacity-0"
+    class="enhanced-image w-full h-full object-contain opacity-0 rounded-md"
   />
 </div>
 

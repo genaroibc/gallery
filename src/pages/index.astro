@@ -5,7 +5,9 @@ import images from "@/assets/images.json"
 ---
 
 <MainLayout>
-  <section class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-8 p-12">
+  <section
+    class="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-2 p-2 md:py-12 md:px-8"
+  >
     {
       images.map(image => (
         <Image
