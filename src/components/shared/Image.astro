@@ -9,29 +9,19 @@ const { alt, fullImgSrc, placeholderImgSrc } = Astro.props
 ---
 
 <div
-  class="blurred-img-container"
+  class="w-full h-full bg-no-repeat [background-size:100%]"
   style={`background-image: url('${placeholderImgSrc}'); background-position: center;`}
 >
-  <img loading="lazy" src={fullImgSrc} alt={alt} class="w-full h-full" />
+  <img
+    loading="lazy"
+    src={fullImgSrc}
+    alt={alt}
+    class="enhanced-image w-full h-full object-contain opacity-0"
+  />
 </div>
 
 <style>
-  img {
-    object-fit: contain;
-  }
-
-  .blurred-img-container {
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: 100%;
-  }
-
-  .blurred-img-container img {
-    opacity: 0;
-  }
-
-  .blurred-img-container.full-img-loaded img {
+  img.fully-loaded {
     animation: showImg 0.3s ease-in-out forwards;
   }
 
@@ -43,15 +33,15 @@ const { alt, fullImgSrc, placeholderImgSrc } = Astro.props
 </style>
 
 <script>
-  const $imgContainers = document.querySelectorAll(".blurred-img-container")
+  const $images = document.querySelectorAll(
+    "img.enhanced-image"
+  ) as NodeListOf<HTMLImageElement>
 
-  $imgContainers.forEach($container => {
-    const $img = $container.querySelector("img")
-
+  $images.forEach($img => {
     if (!$img) return
 
     function loadFullImage() {
-      $container.classList.add("full-img-loaded")
+      $img.classList.add("fully-loaded")
     }
 
     if ($img.complete) {
