@@ -11,7 +11,8 @@
     "prebuild": "pnpm generate-images",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "standard --fix"
   },
   "dependencies": {
     "@astrojs/tailwind": "latest",
@@ -19,6 +20,10 @@
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
-    "@types/node": "20.5.4"
+    "@types/node": "20.5.4",
+    "standard": "17.1.0"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json"
   }
 }
