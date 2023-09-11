@@ -1,0 +1,35 @@
+---
+import type { GetStaticPaths } from "astro"
+import images from "@/assets/images.json"
+import Image from "@/components/shared/Image.astro"
+import MainLayout from "@/layouts/MainLayout.astro"
+
+export const getStaticPaths = (() => {
+  return images.map(({ alt }) => {
+    return {
+      params: {
+        image: alt
+      }
+    }
+  })
+}) satisfies GetStaticPaths
+
+const { image } = Astro.params
+
+const imageData = images.find(({ alt }) => alt === image)
+
+if (!imageData) {
+  return Astro.redirect("/")
+}
+
+const { alt, src, placeholderSrc } = imageData
+---
+
+<MainLayout>
+    <Image
+      imageStyle={`view-transition-name: image-${alt.replaceAll(".", "-")}; width: 100vw; height: 100vh;`}
+      alt={alt}
+      fullImgSrc={src}
+      placeholderImgSrc={placeholderSrc}
+    />
+</MainLayout>

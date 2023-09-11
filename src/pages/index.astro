@@ -9,12 +9,18 @@ import images from "@/assets/images.json"
     class="grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-2 p-2 md:py-12 md:px-8"
   >
     {
-      images.map(image => (
-        <Image
-          alt={image.alt}
-          fullImgSrc={image.src}
-          placeholderImgSrc={image.placeholderSrc}
-        />
+      images.map(({ alt, placeholderSrc, src }) => (
+        <a href={`/${alt}`}>
+          <Image
+            imageStyle={`view-transition-name: image-${alt.replaceAll(
+              ".",
+              "-"
+            )}`}
+            alt={alt}
+            fullImgSrc={src}
+            placeholderImgSrc={placeholderSrc}
+          />
+        </a>
       ))
     }
   </section>

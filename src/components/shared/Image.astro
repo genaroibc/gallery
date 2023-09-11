@@ -3,9 +3,10 @@ interface Props {
   placeholderImgSrc: string
   fullImgSrc: string
   alt: string
+  imageStyle?: string
 }
 
-const { alt, fullImgSrc, placeholderImgSrc } = Astro.props
+const { alt, fullImgSrc, placeholderImgSrc, imageStyle } = Astro.props
 ---
 
 <div
@@ -13,10 +14,11 @@ const { alt, fullImgSrc, placeholderImgSrc } = Astro.props
   style={`background-image: url('${placeholderImgSrc}'); background-position: center;`}
 >
   <img
+    style={imageStyle}
     loading="lazy"
     src={fullImgSrc}
     alt={alt}
-    class="enhanced-image w-full h-full object-contain opacity-0 rounded-md"
+    class="w-full h-full object-contain rounded-md"
   />
 </div>
 
@@ -31,25 +33,3 @@ const { alt, fullImgSrc, placeholderImgSrc } = Astro.props
     }
   }
 </style>
-
-<script>
-  const $images = document.querySelectorAll(
-    "img.enhanced-image"
-  ) as NodeListOf<HTMLImageElement>
-
-  $images.forEach($img => {
-    if (!$img) return
-
-    function loadFullImage() {
-      $img.classList.add("fully-loaded")
-    }
-
-    if ($img.complete) {
-      loadFullImage()
-    } else {
-      $img.addEventListener("load", () => {
-        loadFullImage()
-      })
-    }
-  })
-</script>
